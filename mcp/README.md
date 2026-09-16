@@ -1,6 +1,6 @@
 # Brancher les outils à Claude
 
-Sept serveurs MCP. La skill [`outbound-setup`](../skills/outbound-setup/SKILL.md)
+Six serveurs MCP. La skill [`outbound-setup`](../skills/outbound-setup/SKILL.md)
 vérifie lesquels répondent déjà chez toi et te propose d'installer les autres,
 une commande à la fois. Cette page est là si tu préfères le faire à la main.
 
@@ -14,7 +14,6 @@ Toutes les commandes se lancent dans un terminal, pas dans Claude.
 | [Allo](#4-allo--la-téléphonie) | La téléphonie reliée au CRM | tu appelles depuis ton mobile sans savoir qui te rappelle | dès 18 $/mois |
 | [Pipecorn](#5-pipecorn--les-numéros-de-mobile) | Les numéros de mobile | pas de numéros à appeler | ~120 €/mois |
 | [Icypeas](#6-icypeas--les-contacts-linkedin) | Les contacts LinkedIn | tu cherches les contacts à la main | quelques euros |
-| [La Growth Machine](#7-la-growth-machine--optionnel-multicanal) | Le multicanal, optionnel | rien, ce blueprint est téléphonique | à partir de 60 €/mois |
 
 ---
 
@@ -108,23 +107,6 @@ echo 'export ICYPEAS_KEY="ta_cle_icypeas"' >> ~/.zshrc && source ~/.zshrc
 Le header est `Authorization: ta_cle`, **la clé seule, jamais « Bearer »**.
 Le point d'entrée `find-people/count` est gratuit et exact : c'est lui qui donne
 le coût avant toute dépense. Compte toujours avant d'extraire.
-
-## 7. La Growth Machine · optionnel, multicanal
-
-[lagrowthmachine.com](https://lagrowthmachine.com)
-
-```bash
-claude mcp add lgm --transport http https://mcp.lagrowthmachine.com/
-```
-
-**Tu n'en as pas besoin pour ce blueprint**, qui est volontairement limité à
-l'outbound téléphonique. Un outil de séquençage multicanal fait à peu près
-doubler le coût de la pipeline, et sur les premiers mois ce budget est mieux
-ailleurs.
-
-Branche-le le jour où tu veux ajouter une lane LinkedIn et e-mail à côté du
-téléphone. Le fichier de prospection prévoit déjà une colonne `Lane` pour
-aiguiller chaque contact vers l'un ou l'autre.
 
 ---
 

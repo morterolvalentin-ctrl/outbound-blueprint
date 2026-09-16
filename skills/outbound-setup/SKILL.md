@@ -172,12 +172,13 @@ Puis présente-lui le tableau de ce qui manque, avec le coût de chacun, et
 | **Allo** ([withallo.com](https://withallo.com)) | La téléphonie reliée au CRM | il appelle depuis son mobile sans savoir qui le rappelle | dès 18 $/mois |
 | **Pipecorn** | Les numéros de mobile | pas de numéros à appeler | ~120 €/mois |
 | **Icypeas** | Les contacts LinkedIn | il cherche les contacts à la main | quelques euros |
-| **La Growth Machine** | Le multicanal, **optionnel** | rien, ce blueprint est téléphonique | à partir de 60 €/mois |
 
 Les quatre premiers sont l'ossature. Pipecorn et Icypeas se branchent au moment
-d'attaquer le premier lot. La Growth Machine ne sert pas à ce blueprint : ne la
-propose que s'il demande du multicanal, et dis-lui qu'elle fait à peu près
-doubler le coût de la pipeline.
+d'attaquer le premier lot.
+
+S'il te parle d'un outil de séquençage multicanal, dis-lui que ce n'est pas
+nécessaire ici et pourquoi : ça fait à peu près doubler le coût de la pipeline,
+et sur les premiers mois ce budget est mieux ailleurs.
 
 Les commandes exactes sont dans `mcp/README.md` du dépôt. Donne-les **une à la
 fois**, attends qu'il confirme que ça répond, passe à la suivante. Ne lui colle

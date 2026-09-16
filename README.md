@@ -59,7 +59,7 @@ Sept phases, quatre arrêts où tu valides.
 
 ## Les outils
 
-Sept serveurs MCP, dont quatre suffisent pour démarrer. Les commandes exactes
+Six serveurs MCP, dont quatre suffisent pour démarrer. Les commandes exactes
 sont dans [`mcp/README.md`](mcp/README.md), et `/outbound-setup` te les donne
 au bon moment.
 
@@ -71,12 +71,10 @@ au bon moment.
 | [Allo](mcp/README.md#4-allo--la-téléphonie) | La téléphonie, reliée au CRM | dès 18 $ |
 | [Pipecorn](mcp/README.md#5-pipecorn--les-numéros-de-mobile) | Les numéros de mobile | ~120 € |
 | [Icypeas](mcp/README.md#6-icypeas--les-contacts-linkedin) | Les contacts LinkedIn | quelques euros |
-| [La Growth Machine](mcp/README.md#7-la-growth-machine--optionnel-multicanal) | Le multicanal, **optionnel** | à partir de 60 € |
 
-La Growth Machine n'est pas nécessaire ici. Ce blueprint est volontairement
-limité à l'outbound téléphonique : un séquenceur multicanal fait à peu près
-doubler le coût de la pipeline, et sur les premiers mois ce budget est mieux
-ailleurs.
+Il n'y a pas d'outil de séquençage dans cette liste, et c'est volontaire. Ce
+blueprint traite d'outbound téléphonique : un séquenceur fait à peu près doubler
+le coût de la pipeline, et sur les premiers mois ce budget est mieux ailleurs.
 
 ## Les trois skills
 
@@ -119,6 +117,20 @@ rm -rf ~/.claude/skills/outbound-setup ~/.claude/skills/outbound-batch \
 ```
 
 Tes MCP restent branchés, ton Sheet et ton CRM restent à toi.
+
+## Qui a écrit ça
+
+<img src="https://scalon.fr/img/asset-84dc076345.webp" alt="Valentin Morterol" width="96" height="96" align="left" hspace="16">
+
+**Valentin Morterol**, cofondateur et CEO de [Scalon](https://scalon.fr).
+
+On qualifie des marchés entiers pour les entreprises qui prospectent des
+établissements locaux : garages, restaurants, bars, commerces. Pour chaque
+établissement, ce qu'il fait vraiment et ce qui en fait un client.
+
+[LinkedIn](https://www.linkedin.com/in/valentin-morterol/) · [valentin@scalon.fr](mailto:valentin@scalon.fr) · [Prendre 30 minutes](https://cal.com/valentin-morterol-ezc5qn/30min)
+
+<br clear="left">
 
 ## Licence
 

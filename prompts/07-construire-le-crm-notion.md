@@ -67,7 +67,7 @@ BASE 2 · 👤 Contacts · une ligne par personne
 - Prochaine action (date, avec rappel) : la prochaine relance planifiée
 - Relance due (formule) : "⚠️ Relancer" si l'Etat est Qualifié ou Opportunité
   ET que Dernier contact est vide ou date de plus de 14 jours. Sinon vide
-- Canal (select) : Cold call, Multicanal, Manuel, Import, Réseau
+- Canal (select) : Cold call, Manuel, Import, Réseau
 - Source (select) : Réseau, Réseau éloigné, LinkedIn, Cold message,
   Recommandation, Événement, Autre
 - Type de personne (select) : Prospect, Client, Personne d'intérêt, Concurrent
