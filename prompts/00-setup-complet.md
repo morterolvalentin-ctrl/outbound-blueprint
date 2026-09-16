@@ -66,12 +66,30 @@ saurai alors comment calibrer un export plus large.
 
 → ARRÊT. Je valide les critères et le volume avant de dépenser.
 
-Ensuite, construis un Google Sheet de prospection avec ces colonnes, dans cet
-ordre :
-ID, Lot demandé, Entreprise, Domaine, Verticale, Taille équipe commerciale,
-Résumé entreprise, Prénom, Nom, Poste, LinkedIn, E-mail, Mobile,
+Ensuite, construis mon fichier de prospection : UN classeur, DEUX onglets,
+parce qu'une entreprise vit une seule fois et qu'une personne vit plusieurs fois
+dans la même entreprise. La jointure se fait sur le domaine du site, jamais sur
+le nom.
+
+Onglet « 1. Entreprises », une ligne par entreprise :
+Domaine, Entreprise, Site web, Autres noms, Verticale, Effectif,
+Taille équipe commerciale, Résumé entreprise, À qui elle vend, Dans l'ICP,
+Offres / produits, Zone géographique, Lot, Ajoutée le
+
+Onglet « 2. Contacts », une ligne par personne :
+ID, Domaine, Entreprise, Lot, Prénom, Nom, Poste, LinkedIn, E-mail, Mobile,
 Source contact, Source mobile, Enrichi le, Statut, Nb appels, Dernier appel,
-Prochaine action, Notes, Dans CRM, Etat CRM, Lien CRM, Sync le, Ajouté le.
+Prochaine action, Notes, Dans CRM, Etat CRM, Lien CRM, Sync le
+
+Pose aussi les mises en forme, elles évitent des erreurs silencieuses :
+ligne d'en-tête figée et filtrée sur les deux onglets, listes déroulantes sur
+Verticale / Dans l'ICP / Statut / Taille équipe commerciale, format date
+AAAA-MM-JJ sur toutes les dates, et FORMAT TEXTE BRUT sur Mobile, sinon Sheets
+mange le + et le zéro initial.
+
+Garde les deux colonnes de cible, elles ne servent pas à la même chose :
+« Verticale » est une liste fermée, donc filtrable et comptable ; « À qui elle
+vend » est du texte libre, donc fidèle.
 
 Verse l'export dedans, puis qualifie chaque entreprise avec DEUX colonnes :
 

@@ -50,8 +50,16 @@ pas qualifiée, c'est normal, c'est la matière première.
 ## Étape B · le fichier, et la qualification par Claude
 
 Verse l'export dans un Google Sheet. C'est lui qui devient ton **fichier de
-prospection** : une ligne par entreprise pour l'instant, une ligne par personne
-plus tard.
+prospection**, avec **deux onglets** : `1. Entreprises`, une ligne par
+entreprise, que tu remplis maintenant ; et `2. Contacts`, une ligne par
+personne, que tu rempliras à l'étape 05. La jointure entre les deux se fait sur
+le **domaine du site**, jamais sur le nom.
+
+Les colonnes exactes des deux onglets sont dans
+[`../references/schema-sheet-outbound.md`](../references/schema-sheet-outbound.md).
+Crée-les avant de verser quoi que ce soit, et pose tout de suite les listes
+déroulantes et le format texte brut sur `Mobile` : Sheets mange le `+` et le
+zéro initial d'un numéro sinon.
 
 Branche Google Drive et Google Sheets à Claude en MCP (commandes dans
 [`../mcp/README.md`](../mcp/README.md)), puis lance ce prompt.
@@ -134,7 +142,8 @@ Un Google Sheet avec, pour chaque entreprise de ton périmètre, ce qu'elle fait
 tout le reste : les contacts à l'étape 05, les mobiles à l'étape 06, les appels
 à l'étape 07, le CRM à l'étape 09.
 
-Le détail des colonnes à prévoir est dans
+Le détail des deux onglets, des sept règles du fichier et des mises en forme à
+poser est dans
 [`../references/schema-sheet-outbound.md`](../references/schema-sheet-outbound.md).
 
 ## Étape suivante

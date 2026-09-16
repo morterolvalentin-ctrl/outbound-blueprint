@@ -54,7 +54,7 @@ sache dans quoi il s'engage.
 
 | Outil | Ce qu'il fait ici |
 |---|---|
-| **Google Sheets** | le fichier de prospection, phases 1 à 5 |
+| **Google Sheets** | le fichier de prospection, deux onglets : `1. Entreprises` et `2. Contacts` |
 | **Icypeas** | l'extraction des contacts LinkedIn, phase 3 |
 | **Pipecorn** | l'enrichissement des mobiles, phase 5 |
 | **Allo** ([withallo.com](https://withallo.com)) | les appels, phase 6 |
@@ -152,7 +152,11 @@ moins de 10 → dirigeant ou fondateur, puis responsable commercial ;
 plus de 30 → une seule personne, côté opérations commerciales ou CRM.
 Deux personnes par entreprise au maximum dès que c'est payant.
 
-## Phase 4 · écrire dans le fichier
+## Phase 4 · écrire dans l'onglet Contacts
+
+Les contacts vont dans l'onglet `2. Contacts`, rattachés à leur entreprise par
+le **domaine**. Le schéma complet des deux onglets est dans
+`~/.claude/outbound/schema-sheet-outbound.md`.
 
 Une colonne se désigne **par le nom de son en-tête, jamais par sa lettre** :
 l'ordre des colonnes bouge à la main. Résoudre le nom au moment d'écrire.

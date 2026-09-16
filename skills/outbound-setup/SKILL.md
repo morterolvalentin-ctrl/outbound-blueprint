@@ -43,7 +43,7 @@ opérationnelles qui lisent sa configuration.
 |---|---|
 | `mcp.md` | Les commandes d'installation des 6 serveurs MCP, phase 4 |
 | `prompts/` | Les 10 prompts du blueprint : la constitution de la base en phase 5, la spec complète du CRM en phase 7 |
-| `schema-sheet-outbound.md` | Les colonnes du fichier de prospection, phase 5 |
+| `schema-sheet-outbound.md` | Les deux onglets du fichier, leurs colonnes, les 7 règles et les mises en forme, phase 5 |
 | `dictionnaire-postes.exemple.json` | Un **exemple de format**, jamais un contenu à reprendre |
 
 **Lis ces fichiers au moment où tu en as besoin.** Ne reconstitue rien de
@@ -251,15 +251,67 @@ critères :
 > **ARRÊT 4.** Il valide les critères et le volume avant de lancer l'export.
 > C'est une dépense de crédits : annonce ce que ça coûte.
 
-Puis fais-lui verser l'export dans un Google Sheet. C'est ce fichier qui devient
-son **fichier de prospection** : une ligne par entreprise pour l'instant, une
-ligne par personne ensuite. Prends les colonnes dans
-`~/.claude/outbound/schema-sheet-outbound.md` et adapte-les à sa verticale.
+### Construis-lui son fichier, ne te contente pas de le décrire
 
-Rappelle-lui les trois règles du fichier, elles reviendront le hanter sinon :
-une colonne se désigne par le nom de son en-tête et jamais par sa lettre ; on
-n'écrit jamais à un numéro de ligne mais à une personne vérifiée ; un échec
-d'enrichissement se trace, sinon on le repaie.
+**Lis `~/.claude/outbound/schema-sheet-outbound.md` et crée réellement le
+classeur.** L'utilisateur ne doit pas avoir à recopier un tableau de
+documentation à la main : c'est long, et il se trompera sur un nom de colonne
+que les autres skills chercheront ensuite par son nom exact.
+
+Un classeur, **deux onglets**, parce qu'une entreprise vit une seule fois et
+qu'une personne vit plusieurs fois dans la même entreprise :
+
+| Onglet | Une ligne = | Rempli à |
+|---|---|---|
+| `1. Entreprises` | une entreprise | la phase 5, puis qualifié en phase 6 |
+| `2. Contacts` | une personne | l'extraction des contacts, plus tard |
+
+La jointure se fait sur le **domaine du site**, jamais sur le nom : deux
+entreprises peuvent porter le même nom, jamais le même domaine.
+
+Fais, dans cet ordre :
+
+1. **Crée le classeur** et nomme-le avec son activité et la date.
+2. **Écris les en-têtes des deux onglets**, exactement tels qu'ils sont dans le
+   schéma. Adapte seulement ce qui est propre à son marché : les valeurs de
+   `Verticale`, qui sont sa liste fermée à lui.
+3. **Verse l'export d'entreprises** dans l'onglet `1. Entreprises`, en mappant
+   les colonnes de l'export sur les en-têtes. Montre-lui le mapping avant
+   d'écrire, il y aura des colonnes de l'export qui ne correspondent à rien.
+4. **Pose les mises en forme** : ligne d'en-tête figée et filtrée sur les deux
+   onglets ; listes déroulantes sur `Verticale`, `Dans l'ICP`, `Statut` et
+   `Taille équipe commerciale` ; format date `AAAA-MM-JJ` sur toutes les
+   colonnes de date ; **format texte brut sur `Mobile`**, sinon Sheets mange le
+   `+` et le zéro initial.
+5. **Vérifie** en relisant l'en-tête que tu viens d'écrire, et annonce-lui le
+   nombre de lignes versées et le nombre de colonnes de chaque onglet.
+
+Deux colonnes méritent qu'on lui explique pourquoi elles existent toutes les
+deux, sinon il en supprimera une : **`Verticale`** est une liste fermée, donc
+filtrable et comptable, elle dit combien de boîtes il a par marché.
+**`À qui elle vend`** est du texte libre, donc fidèle : elle contient « garages
+poids lourds » ou « carrosseries indépendantes » là où la verticale dit
+seulement « Automobile ». On filtre sur la première pour cadrer, on cherche dans
+la seconde pour cibler.
+
+### Les règles à lui transmettre
+
+Elles viennent toutes d'une erreur réelle, et chacune a coûté quelque chose.
+Dis-les-lui maintenant, pas quand il les aura commises :
+
+1. **Une colonne se désigne par le nom de son en-tête, jamais par sa lettre.**
+   Il va réordonner ses colonnes à la main. Un script qui écrit en dur dans la
+   colonne F écrase la mauvaise donnée sans rien signaler.
+2. **On n'écrit jamais à un numéro de ligne**, mais à un `ID`, après avoir relu
+   le prénom et le nom de la ligne visée.
+3. **`Notes` s'ajoute avec ` | `, ne s'écrase jamais.** L'historique d'un
+   prospect tient dans cette colonne.
+4. **Un échec d'enrichissement se trace**, sinon on le repaie au lot suivant.
+5. **Jamais `Rappeler` sur une ligne à zéro appel.**
+6. **Dédoublonner les personnes avant de payer**, sur l'URL LinkedIn normalisée
+   **et** sur prénom + nom + domaine.
+7. **Quatre enrichissements par entreprise au maximum**, servis par ordre de
+   priorité du dictionnaire de postes.
 
 ## Phase 6 · qualifier la base
 
