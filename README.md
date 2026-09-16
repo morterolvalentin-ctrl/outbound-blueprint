@@ -6,7 +6,7 @@ Les prompts, les skills et les gabarits qui accompagnent le blueprint
 Tout ce qui est ici est prêt à copier. Tu n'as pas besoin de lire le blueprint
 pour t'en servir, mais il explique pourquoi chaque pièce existe.
 
-👉 **[Lire le blueprint](LIEN_BLUEPRINT_A_AJOUTER)**
+👉 **[Lire le blueprint](LIEN_NOTION_PUBLIC_A_COLLER_ICI)** · le guide complet qui explique pourquoi chaque pièce existe
 👉 **[Prendre 30 minutes avec Valentin](https://cal.com/valentin-morterol-ezc5qn/30min)**
 👉 [scalon.fr](https://scalon.fr)
 
