@@ -5,7 +5,7 @@ Elle se configure en te posant des questions sur **ton** activité, pas en
 recopiant celle de quelqu'un d'autre.
 
 C'est la version publique de ce qu'on utilise tous les jours chez
-[Scalon](https://scalon.fr) : 130 000 € de pipeline en 14 jours, pour 184 €
+[Scalon](https://scalon.fr) : 130 000 € de pipeline en 14 jours, pour 204 €
 d'outils par mois.
 
 👉 **[Lire le blueprint](LIEN_NOTION_PUBLIC_A_COLLER_ICI)** · le guide complet qui explique pourquoi chaque pièce existe
