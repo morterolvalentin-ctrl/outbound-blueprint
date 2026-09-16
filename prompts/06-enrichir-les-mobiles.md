@@ -83,4 +83,4 @@ premier, le recouvrement entre deux bases est loin d'être total.
 
 ## Étape suivante
 
-[`06-script-de-cold-call.md`](06-script-de-cold-call.md)
+[`07-script-de-cold-call.md`](07-script-de-cold-call.md)

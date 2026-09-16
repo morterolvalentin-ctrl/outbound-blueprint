@@ -1,7 +1,8 @@
 # 02 · Qualifier son marché : à qui vend chaque entreprise
 
-**Quand l'utiliser :** une fois la verticale choisie, avant de dépenser un euro
-d'enrichissement.
+**Quand l'utiliser :** une fois ta base d'entreprises constituée
+([`02-constituer-sa-base-entreprises.md`](02-constituer-sa-base-entreprises.md)),
+et avant de dépenser un euro d'enrichissement.
 
 **Où :** une conversation Claude avec ton Google Sheet branché en MCP.
 
@@ -104,4 +105,4 @@ C'est le seul point de contrôle gratuit de toute la chaîne.
 
 ## Étape suivante
 
-[`03-dictionnaire-de-postes.md`](03-dictionnaire-de-postes.md)
+[`04-dictionnaire-de-postes.md`](04-dictionnaire-de-postes.md)

@@ -93,4 +93,4 @@ Explique-moi ton choix pour les 5 premières, que je vérifie ta logique.
 
 ## Étape suivante
 
-[`05-enrichir-les-mobiles.md`](05-enrichir-les-mobiles.md)
+[`06-enrichir-les-mobiles.md`](06-enrichir-les-mobiles.md)

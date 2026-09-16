@@ -88,19 +88,21 @@ Elles s'installent avec le script et se lancent comme des commandes.
 
 ## Les prompts, si tu préfères sans skill
 
-Tout est faisable à la main, un prompt par étape.
+Tout est faisable à la main, un prompt par étape. Le 02 est celui que personne
+ne pense à chercher : d'où sort la base d'entreprises au départ.
 
 | # | Étape | Fichier |
 |---|---|---|
 | 00 | Le setup complet en un prompt | [`00-setup-complet.md`](prompts/00-setup-complet.md) |
 | 01 | Choisir sa verticale et son offre | [`01-choisir-sa-verticale.md`](prompts/01-choisir-sa-verticale.md) |
-| 02 | Qualifier son marché : à qui vend chaque entreprise | [`02-qualifier-son-marche.md`](prompts/02-qualifier-son-marche.md) |
-| 03 | Construire son dictionnaire de postes | [`03-dictionnaire-de-postes.md`](prompts/03-dictionnaire-de-postes.md) |
-| 04 | Trouver les contacts | [`04-trouver-les-contacts.md`](prompts/04-trouver-les-contacts.md) |
-| 05 | Enrichir les mobiles sans brûler de crédits | [`05-enrichir-les-mobiles.md`](prompts/05-enrichir-les-mobiles.md) |
-| 06 | Écrire son script de cold call | [`06-script-de-cold-call.md`](prompts/06-script-de-cold-call.md) |
-| 07 | Construire le CRM dans Notion | [`07-construire-le-crm-notion.md`](prompts/07-construire-le-crm-notion.md) |
-| 08 | Traiter une session d'appels | [`08-traiter-une-session-dappels.md`](prompts/08-traiter-une-session-dappels.md) |
+| 02 | Constituer sa base d'entreprises | [`02-constituer-sa-base-entreprises.md`](prompts/02-constituer-sa-base-entreprises.md) |
+| 03 | Qualifier son marché : à qui vend chaque entreprise | [`03-qualifier-son-marche.md`](prompts/03-qualifier-son-marche.md) |
+| 04 | Construire son dictionnaire de postes | [`04-dictionnaire-de-postes.md`](prompts/04-dictionnaire-de-postes.md) |
+| 05 | Trouver les contacts | [`05-trouver-les-contacts.md`](prompts/05-trouver-les-contacts.md) |
+| 06 | Enrichir les mobiles sans brûler de crédits | [`06-enrichir-les-mobiles.md`](prompts/06-enrichir-les-mobiles.md) |
+| 07 | Écrire son script de cold call | [`07-script-de-cold-call.md`](prompts/07-script-de-cold-call.md) |
+| 08 | Construire le CRM dans Notion | [`08-construire-le-crm-notion.md`](prompts/08-construire-le-crm-notion.md) |
+| 09 | Traiter une session d'appels | [`09-traiter-une-session-dappels.md`](prompts/09-traiter-une-session-dappels.md) |
 
 ## Les références
 

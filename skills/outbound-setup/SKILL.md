@@ -42,7 +42,7 @@ opérationnelles qui lisent sa configuration.
 | Fichier | À quoi il sert |
 |---|---|
 | `mcp.md` | Les commandes d'installation des 6 serveurs MCP, phase 4 |
-| `prompts/` | Les 9 prompts du blueprint, dont la spec complète du CRM en phase 6 |
+| `prompts/` | Les 10 prompts du blueprint : la constitution de la base en phase 5, la spec complète du CRM en phase 7 |
 | `schema-sheet-outbound.md` | Les colonnes du fichier de prospection, phase 5 |
 | `dictionnaire-postes.exemple.json` | Un **exemple de format**, jamais un contenu à reprendre |
 
@@ -63,7 +63,7 @@ l'installation, plutôt que d'improviser.
 
 ---
 
-## Les sept phases
+## Les huit phases
 
 | Phase | Ce qu'on fait | Arrêt |
 |---|---|---|
@@ -71,9 +71,10 @@ l'installation, plutôt que d'improviser.
 | 2 | Choisir la verticale et la cible | **Il choisit** |
 | 3 | Construire SON dictionnaire de postes | **Il valide rang par rang** |
 | 4 | Brancher les outils manquants | **Il lance les commandes** |
-| 5 | Créer le fichier de prospection | aucun |
-| 6 | Créer le CRM | aucun |
-| 7 | Écrire son script d'appel | **Il le chronomètre** |
+| 5 | Constituer la base d'entreprises et le fichier | **Il valide l'export et son volume** |
+| 6 | Qualifier la base : résumé et verdict ICP | **Il valide le premier lot de 50** |
+| 7 | Créer le CRM | aucun |
+| 8 | Écrire son script d'appel | **Il le chronomètre** |
 
 ---
 
@@ -222,22 +223,96 @@ Deux précautions à lui transmettre, elles coûtent de l'argent sinon :
 S'il ne veut pas tout installer aujourd'hui, note ce qui manque dans la config
 et continue. Les phases 5 à 7 fonctionnent sans Allo ni Pipecorn.
 
-## Phase 5 · le fichier de prospection
+## Phase 5 · constituer la base d'entreprises
 
-Crée le Google Sheet, un onglet, avec les colonnes du schéma
-(`~/.claude/outbound/schema-sheet-outbound.md`), adaptées à sa verticale.
+C'est la marche que tout le monde saute, et sans elle il n'y a rien à qualifier.
+L'utilisateur ne part pas d'une liste d'entreprises qu'il aurait devinées : il
+part de **toutes** les entreprises d'un périmètre, et c'est toi qui lui dis
+lesquelles sont ses clients.
+
+Explique-lui l'export **d'entreprises** dans Icypeas, pas de contacts, sur trois
+critères :
+
+- **le pays** qu'il prospecte, celui où il peut décrocher son téléphone ;
+- **l'effectif**, en fourchette et jamais en minimum seul : sous la borne basse
+  il n'y a personne à qui vendre, au-dessus de la borne haute le cycle de vente
+  ne ressemble plus à un cold call. Déduis une fourchette de son panier moyen et
+  de ses clients actuels, et propose-la-lui ;
+- **le volume maximum**, qui pilote sa dépense de crédits.
+
+<br>
+
+> **Fais-lui commencer petit.** Un premier export de 500 à 1 000 entreprises,
+> qualifié en phase 6, donne son taux réel de « dans l'ICP ». S'il est de 4 %, il
+> sait qu'un export de 10 000 lui rendra environ 400 cibles, et il sait s'il doit
+> élargir l'effectif ou changer de critère. Ce test coûte presque rien et il
+> évite un export de 50 000 lignes calibré au hasard.
+
+> **ARRÊT 4.** Il valide les critères et le volume avant de lancer l'export.
+> C'est une dépense de crédits : annonce ce que ça coûte.
+
+Puis fais-lui verser l'export dans un Google Sheet. C'est ce fichier qui devient
+son **fichier de prospection** : une ligne par entreprise pour l'instant, une
+ligne par personne ensuite. Prends les colonnes dans
+`~/.claude/outbound/schema-sheet-outbound.md` et adapte-les à sa verticale.
 
 Rappelle-lui les trois règles du fichier, elles reviendront le hanter sinon :
 une colonne se désigne par le nom de son en-tête et jamais par sa lettre ; on
 n'écrit jamais à un numéro de ligne mais à une personne vérifiée ; un échec
 d'enrichissement se trace, sinon on le repaie.
 
-## Phase 6 · le CRM
+## Phase 6 · qualifier la base
+
+Ajoute deux colonnes au fichier et remplis-les pour chaque ligne.
+
+**« Résumé entreprise »**, une seule ligne, dans ce format exact :
+
+```
+<Ce que fait la boîte, une phrase courte>. Clients : <types de clients B2B>.
+```
+
+**« Dans l'ICP »**, un verdict parmi cinq valeurs et seulement celles-ci :
+`oui`, `oui, en partie`, `partiel`, `indirect`, `non`.
+
+Règles, sans exception :
+
+1. **Clients B2B uniquement.** Les professionnels qui paient la boîte, jamais
+   les particuliers. Une boîte qui vend surtout au grand public le dit dans le
+   verdict.
+2. **Si tu ne sais pas, écris INCONNU** dans les deux colonnes. N'invente jamais
+   un client type. Un INCONNU lui coûte une vérification de trente secondes, une
+   invention lui coûte un appel et sa crédibilité.
+3. Le résumé dit ce que fait l'entreprise, **jamais d'où vient l'information**.
+4. Écris par identifiant de ligne, et résous les colonnes par le nom de leur
+   en-tête.
+
+Travaille **par lots de 50 lignes**.
+
+> **ARRÊT 5.** Montre-lui le premier lot de 50 avant de continuer.
+> C'est le moment le plus important de toute la configuration : si tu as mal
+> compris sa cible, il le voit là, en trente secondes, sur 50 lignes. S'il te
+> laisse partir sur 10 000, il le découvrira au téléphone. Corrige la
+> description de son client idéal et relance sur le même lot jusqu'à ce que les
+> verdicts lui paraissent justes.
+
+Une fois la base qualifiée, isole les lignes en `oui` et `oui, en partie`,
+annonce-lui combien il en reste et quelle proportion de l'export ça représente,
+puis écarte ses concurrents, les INCONNU et les doublons de domaine, en lui
+montrant chaque ligne écartée.
+
+Ce qui reste est son périmètre d'enrichissement. **Rien d'autre ne part chez un
+outil payant.** Une entreprise écartée avant l'enrichissement ne coûte rien,
+écartée après elle a coûté ses crédits.
+
+Le prompt complet de ces deux phases est dans
+`~/.claude/outbound/prompts/02-constituer-sa-base-entreprises.md`.
+
+## Phase 7 · le CRM
 
 Construis les quatre bases Notion reliées : 🏢 Entreprises, 👤 Contacts,
 💼 Deals, 🎤 Meetings, avec leurs propriétés, leurs formules, leurs rollups et
 leurs vues. La spécification complète est dans
-`~/.claude/outbound/prompts/07-construire-le-crm-notion.md`, installé avec la
+`~/.claude/outbound/prompts/08-construire-le-crm-notion.md`, installé avec la
 skill. **Lis ce fichier et applique-le tel quel.** N'improvise pas un schéma de
 CRM : les formules, les rollups et les vues y sont écrits parce qu'ils ont été
 testés. Si le fichier est absent, dis-le et arrête-toi plutôt que d'inventer.
@@ -251,7 +326,7 @@ Deux adaptations à lui demander :
 Crée un jeu de test, vérifie chaque formule et chaque rollup, supprime-le, puis
 écris le mode d'emploi en une page dans la page parente.
 
-## Phase 7 · son script d'appel
+## Phase 8 · son script d'appel
 
 Six blocs, 25 secondes maximum :
 
@@ -271,7 +346,7 @@ Donne-lui aussi les cinq objections les plus probables **sur son marché à lui*
 et une réponse de deux phrases pour chacune, qui ramène à la demande de
 rendez-vous.
 
-> **ARRÊT 4.** Il le lit à voix haute et le chronomètre. Au-delà de 25 secondes,
+> **ARRÊT 6.** Il le lit à voix haute et le chronomètre. Au-delà de 25 secondes,
 > coupe.
 
 ## Pour finir
@@ -286,6 +361,7 @@ rendez-vous.
   "client_reference": "le nom cité au téléphone",
   "travail_de_terrain": "l'étude ou le comptage qui sert de raison d'appeler",
   "sheet_url": "",
+  "base_entreprises": { "source": "", "pays": "", "effectif": "", "volume": 0, "taux_icp": null },
   "crm_url": "",
   "outils_branches": [],
   "outils_manquants": [],

@@ -41,7 +41,10 @@ de poste. Ne redemande jamais ces informations, et n'utilise jamais un
 dictionnaire d'exemple à leur place.
 
 **Si l'un des deux fichiers manque, arrête-toi et dis de lancer
-`/outbound-setup`.** Sans configuration, cette skill ne peut produire que du
+`/outbound-setup`.** Même chose si le fichier de prospection n'existe pas encore
+ou n'a pas ses colonnes « Résumé entreprise » et « Dans l'ICP » : cette skill
+travaille sur une base d'entreprises déjà constituée et qualifiée, elle ne la
+crée pas. C'est `/outbound-setup` qui la monte, en phases 5 et 6. Sans configuration, cette skill ne peut produire que du
 générique, et du générique ne se vend pas au téléphone.
 
 Puis annonce les soldes de crédits Icypeas et Pipecorn, pour que l'utilisateur

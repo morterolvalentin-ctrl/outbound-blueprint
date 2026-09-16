@@ -93,4 +93,4 @@ différents. Après quoi la personne sort de la file d'appels.
 
 ## Étape suivante
 
-[`07-construire-le-crm-notion.md`](07-construire-le-crm-notion.md)
+[`08-construire-le-crm-notion.md`](08-construire-le-crm-notion.md)

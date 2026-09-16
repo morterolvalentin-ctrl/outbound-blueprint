@@ -40,7 +40,7 @@ cp "${TMP}/repo/references/schema-sheet-outbound.md" "${CONF_DIR}/schema-sheet-o
 cp "${TMP}/repo/mcp/README.md" "${CONF_DIR}/mcp.md"
 rm -rf "${CONF_DIR}/prompts"
 cp -R "${TMP}/repo/prompts" "${CONF_DIR}/prompts"
-ok "références, guide MCP et 9 prompts copiés dans ~/.claude/outbound/"
+ok "références, guide MCP et 10 prompts copiés dans ~/.claude/outbound/"
 
 echo
 bold "C'est installé. Une seule chose à faire maintenant :"

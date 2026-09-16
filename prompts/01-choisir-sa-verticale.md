@@ -52,4 +52,4 @@ Une verticale à la fois donne trois choses qu'aucun volume ne remplace :
 
 ## Étape suivante
 
-[`02-qualifier-son-marche.md`](02-qualifier-son-marche.md)
+[`02-constituer-sa-base-entreprises.md`](02-constituer-sa-base-entreprises.md)

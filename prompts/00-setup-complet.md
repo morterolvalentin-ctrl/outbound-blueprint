@@ -51,18 +51,43 @@ Ce critère prime sur la taille du marché.
 
 → ARRÊT. Je choisis la verticale.
 
-═══ PHASE 2 · LA LISTE ═══
-Construis un Google Sheet de prospection avec ces colonnes, dans cet ordre :
+═══ PHASE 2 · LA BASE ET LA LISTE ═══
+D'abord, d'où vient la base. Explique-moi l'export d'ENTREPRISES (pas de
+contacts) depuis un outil comme Icypeas, sur trois critères : le pays que je
+prospecte, une FOURCHETTE d'effectif (jamais un minimum seul), et un volume
+maximum qui pilote ma dépense de crédits.
+
+Déduis la fourchette d'effectif de mon panier moyen et de mes clients actuels,
+et propose-la-moi.
+
+Fais-moi commencer par un export de 500 à 1 000 entreprises, pas plus : la
+qualification ci-dessous me donnera mon taux réel de « dans l'ICP », et je
+saurai alors comment calibrer un export plus large.
+
+→ ARRÊT. Je valide les critères et le volume avant de dépenser.
+
+Ensuite, construis un Google Sheet de prospection avec ces colonnes, dans cet
+ordre :
 ID, Lot demandé, Entreprise, Domaine, Verticale, Taille équipe commerciale,
 Résumé entreprise, Prénom, Nom, Poste, LinkedIn, E-mail, Mobile,
 Source contact, Source mobile, Enrichi le, Statut, Nb appels, Dernier appel,
 Prochaine action, Notes, Dans CRM, Etat CRM, Lien CRM, Sync le, Ajouté le.
 
-Puis qualifie mes entreprises cibles. Pour CHACUNE, un résumé d'une ligne :
-<Ce que fait la boîte>. Clients : <types de clients B2B>. <Ma cible> : <verdict>.
-Verdict parmi : oui / oui, en partie / partiel / indirect / non.
+Verse l'export dedans, puis qualifie chaque entreprise avec DEUX colonnes :
+
+« Résumé entreprise », une ligne :
+<Ce que fait la boîte>. Clients : <types de clients B2B>.
+
+« Dans l'ICP », un verdict parmi : oui / oui, en partie / partiel / indirect /
+non.
+
 Clients B2B uniquement, jamais les particuliers. Si tu ne sais pas : INCONNU,
 tu n'inventes jamais.
+
+Travaille par lots de 50 lignes et montre-moi le premier lot avant de
+continuer, que je vérifie que tu as compris ma cible. C'est le moment le plus
+important : une erreur vue sur 50 lignes coûte trente secondes, la même erreur
+vue au téléphone coûte la journée.
 
 Écarte ensuite mes concurrents et les boîtes mal classées, et montre-moi ce que
 tu écartes et pourquoi.
@@ -128,7 +153,7 @@ phrases pour chacune, qui ramène à la demande de rendez-vous.
 ═══ PHASE 6 · LE CRM ═══
 Construis dans Notion quatre bases reliées : 🏢 Entreprises, 👤 Contacts,
 💼 Deals, 🎤 Meetings, avec leurs propriétés, leurs formules et leurs vues.
-Le détail complet est dans le prompt 07 de ce dépôt : applique-le tel quel.
+Le détail complet est dans le prompt 08 de ce dépôt : applique-le tel quel.
 
 Les deux vues qui comptent : « 🔔 À relancer » dans Contacts, cinq minutes
 chaque matin, et « 🚀 Pipeline » dans Deals, quinze minutes chaque semaine.
@@ -150,5 +175,5 @@ Rends-moi :
 
 Tu n'as plus besoin de ce prompt. Au quotidien, deux seulement :
 
-- **le matin** : [`08-traiter-une-session-dappels.md`](08-traiter-une-session-dappels.md), pour la session de la veille
+- **le matin** : [`09-traiter-une-session-dappels.md`](09-traiter-une-session-dappels.md), pour la session de la veille
 - **quand tu veux un nouveau lot** : la skill [`outbound-batch`](../skills/outbound-batch/SKILL.md)
