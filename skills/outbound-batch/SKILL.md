@@ -32,8 +32,32 @@ allowed-tools:
 Cinq de ses six phases se terminent par une validation de l'utilisateur, dont
 trois engagent de l'argent. Un subagent ne peut pas tenir ces points d'arrêt.
 
-Au démarrage, toujours annoncer les soldes de crédits des outils branchés, pour
-que l'utilisateur sache dans quoi il s'engage.
+## Avant toute chose
+
+Lis `~/.claude/outbound/config.json` et
+`~/.claude/outbound/dictionnaire-postes.json`. Ils contiennent l'activité de
+l'utilisateur, sa verticale, sa cible, son client référence et **ses** intitulés
+de poste. Ne redemande jamais ces informations, et n'utilise jamais un
+dictionnaire d'exemple à leur place.
+
+**Si l'un des deux fichiers manque, arrête-toi et dis de lancer
+`/outbound-setup`.** Sans configuration, cette skill ne peut produire que du
+générique, et du générique ne se vend pas au téléphone.
+
+Puis annonce les soldes de crédits Icypeas et Pipecorn, pour que l'utilisateur
+sache dans quoi il s'engage.
+
+## Les outils
+
+| Outil | Ce qu'il fait ici |
+|---|---|
+| **Google Sheets** | le fichier de prospection, phases 1 à 5 |
+| **Icypeas** | l'extraction des contacts LinkedIn, phase 3 |
+| **Pipecorn** | l'enrichissement des mobiles, phase 5 |
+| **Allo** ([withallo.com](https://withallo.com)) | les appels, phase 6 |
+| **Notion** | le CRM, alimenté ensuite par `post-call-sync` |
+
+Les commandes d'installation sont dans `mcp/README.md` du dépôt.
 
 ## Les six phases
 
@@ -42,9 +66,9 @@ que l'utilisateur sache dans quoi il s'engage.
 | 0 | Traduire la cible exprimée en langage naturel en types d'entreprises réels présents dans le fichier | **L'utilisateur valide les types** |
 | 1 | Sélectionner les entreprises, puis qualifier chacune : activité, clients B2B, vend-elle à la cible ? | **L'utilisateur valide le périmètre sur les résumés** |
 | 2 | Récupérer les contacts déjà connus, sans dépenser | aucun |
-| 3 | Extraction payante sur le reliquat seulement | **L'utilisateur valide la dépense** |
+| 3 | Icypeas sur le reliquat seulement | **L'utilisateur valide la dépense** |
 | 4 | Écrire dans le fichier de prospection, puis recopier le résumé de chaque entreprise sur toutes ses lignes | **L'utilisateur valide le fichier** |
-| 5 | Enrichissement des mobiles, filtre pays | **L'utilisateur valide la dépense** |
+| 5 | Mobiles chez Pipecorn, filtre pays | **L'utilisateur valide la dépense** |
 | 6 | Cold call | aucun |
 
 ## Phase 0 · traduire la cible
@@ -106,10 +130,16 @@ deux URL réellement différentes peuvent désigner la même personne.
 La seule liste qui part chez un outil payant est celle des entreprises pour
 lesquelles on n'a trouvé aucun contact.
 
-## Phase 3 · extraction payante, sur le reliquat
+## Phase 3 · Icypeas, sur le reliquat seulement
 
-**Compter d'abord, c'est gratuit et exact.** Annoncer le nombre de profils, le
-coût unitaire, le coût total et le solde.
+**Compter d'abord, c'est gratuit et exact.** Le point d'entrée
+`find-people/count` d'Icypeas rend le nombre exact de profils qui seront
+facturés, sans rien débiter. Annoncer le nombre de profils, le coût unitaire, le
+coût total et le solde.
+
+Le header Icypeas est `Authorization: <clé>`, **la clé seule, jamais
+« Bearer »**. Une mauvaise requête rend zéro résultat sans lever d'erreur :
+tester sur une entreprise connue avant de lancer une boucle.
 
 > **ARRÊT 3.** L'utilisateur valide la dépense.
 
@@ -138,7 +168,9 @@ qu'un échec coûte zéro.
 > **ARRÊT 5.** L'utilisateur valide la dépense.
 
 Filtre pays obligatoire, et **le filtre ne suffit pas** : il oriente la
-recherche, il ne filtre pas le résultat. Trier soi-même les numéros rendus :
+recherche, il ne filtre pas le résultat. Ne jamais enrichir un mobile par les
+outils MCP de Pipecorn, ils n'exposent pas ce filtre. Passer par l'API REST avec
+`phone_country_codes`. Trier soi-même les numéros rendus :
 mobile national, puis fixe national, puis l'étranger, qui ne part jamais seul
 en colonne Mobile. Ne jamais écrire le premier numéro de la liste sans l'avoir
 trié.
@@ -153,6 +185,9 @@ Avant d'appeler, vérifier les doublons de numéros : deux personnes d'entrepris
 différentes qui partagent un mobile, l'un des deux est faux.
 
 ## Phase 6 · le cold call
+
+Les appels se passent dans **Allo**, qui est relié au CRM Notion : le nom de la
+personne s'affiche quand elle rappelle.
 
 30 appels par jour, trois tentatives au maximum sur sept jours à des créneaux
 différents. Un appel vise un rendez-vous de prise de besoin de 20 minutes, pas

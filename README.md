@@ -1,23 +1,96 @@
 # Outbound Blueprint
 
-Les prompts, les skills et les gabarits qui accompagnent le blueprint
-**« 130 000 € de pipeline en 14 jours »**.
+Une machine de prospection téléphonique complète, installable en une commande.
+Elle se configure en te posant des questions sur **ton** activité, pas en
+recopiant celle de quelqu'un d'autre.
 
-Tout ce qui est ici est prêt à copier. Tu n'as pas besoin de lire le blueprint
-pour t'en servir, mais il explique pourquoi chaque pièce existe.
+C'est la version publique de ce qu'on utilise tous les jours chez
+[Scalon](https://scalon.fr) : 130 000 € de pipeline en 14 jours, pour 184 €
+d'outils par mois.
 
 👉 **[Lire le blueprint](LIEN_NOTION_PUBLIC_A_COLLER_ICI)** · le guide complet qui explique pourquoi chaque pièce existe
 👉 **[Prendre 30 minutes avec Valentin](https://cal.com/valentin-morterol-ezc5qn/30min)**
-👉 [scalon.fr](https://scalon.fr)
 
-## Par où commencer
+---
 
-| Tu veux | Ouvre |
+## Installation
+
+```bash
+curl -fsSL https://raw.githubusercontent.com/morterolvalentin-ctrl/outbound-blueprint/main/install.sh | bash
+```
+
+Puis, dans Claude Code :
+
+```
+/outbound-setup
+```
+
+C'est tout. La skill prend la main à partir de là.
+
+<br>
+
+> Tu préfères voir ce que fait le script avant de le lancer ?
+> [`install.sh`](install.sh) fait trois choses : il clone ce dépôt dans un dossier
+> temporaire, copie les trois skills dans `~/.claude/skills/` en sauvegardant ce
+> qui existait déjà, et crée `~/.claude/outbound/`. Il ne touche à rien d'autre
+> et n'installe aucune clé.
+
+## Ce que fait `/outbound-setup`
+
+Sept phases, quatre arrêts où tu valides.
+
+| Phase | Ce qu'il se passe |
 |---|---|
-| Tout monter d'un coup, en une conversation | [`prompts/00-setup-complet.md`](prompts/00-setup-complet.md) |
-| Y aller étape par étape | la table ci-dessous, dans l'ordre |
+| **1. Ton contexte** | Il te demande ce que tu fais. Tu donnes **l'URL de ton site**, un **copier-coller** de ta plaquette, ou **trois phrases**. Il lit, puis te pose cinq questions : tes clients, ton panier, qui souffre du problème, qui signe, et ce que tu as produit comme travail de terrain |
+| **2. Ta verticale** | Il propose 4 marchés et les classe sur un seul critère : celui où tu peux dire « on travaille déjà avec X » |
+| **3. Ton dictionnaire** | Il construit **tes** décideurs à partir de **tes** réponses, famille par famille, et te demande explicitement qui tu as déjà appelé pour rien |
+| **4. Tes outils** | Il regarde ce qui est déjà branché et te donne les commandes manquantes, une à la fois |
+| **5. Ton fichier** | Il crée le Google Sheet de prospection |
+| **6. Ton CRM** | Il construit les quatre bases Notion, avec les formules, les vues et le mode d'emploi |
+| **7. Ton script** | Six blocs, 25 secondes, plus les cinq objections de ton marché et leurs réponses |
 
-## Les prompts, dans l'ordre
+<br>
+
+> **Rien ne vient d'un exemple.** Le fichier
+> [`references/dictionnaire-postes.exemple.json`](references/dictionnaire-postes.exemple.json)
+> montre un **format**. Il a été écrit pour une boîte qui vend à des directeurs
+> commerciaux dans l'automobile. Si tu vends autre chose à quelqu'un d'autre, il
+> ne te servira à rien, et la skill le sait : elle construit le tien.
+
+## Les outils
+
+Sept serveurs MCP, dont quatre suffisent pour démarrer. Les commandes exactes
+sont dans [`mcp/README.md`](mcp/README.md), et `/outbound-setup` te les donne
+au bon moment.
+
+| Outil | Rôle | Coût par mois |
+|---|---|---|
+| [Google Sheets](mcp/README.md#1-google-sheets--le-fichier-de-prospection) | Le fichier de prospection | 0 € |
+| [Google Drive](mcp/README.md#2-google-drive--les-fichiers-autour) | Retrouver et lire les fichiers | 0 € |
+| [Notion](mcp/README.md#3-notion--le-crm) | Le CRM | 10 € |
+| [Allo](mcp/README.md#4-allo--la-téléphonie) | La téléphonie, reliée au CRM | dès 18 $ |
+| [Pipecorn](mcp/README.md#5-pipecorn--les-numéros-de-mobile) | Les numéros de mobile | ~120 € |
+| [Icypeas](mcp/README.md#6-icypeas--les-contacts-linkedin) | Les contacts LinkedIn | quelques euros |
+| [La Growth Machine](mcp/README.md#7-la-growth-machine--optionnel-multicanal) | Le multicanal, **optionnel** | à partir de 60 € |
+
+La Growth Machine n'est pas nécessaire ici. Ce blueprint est volontairement
+limité à l'outbound téléphonique : un séquenceur multicanal fait à peu près
+doubler le coût de la pipeline, et sur les premiers mois ce budget est mieux
+ailleurs.
+
+## Les trois skills
+
+Elles s'installent avec le script et se lancent comme des commandes.
+
+| Skill | Quand |
+|---|---|
+| [`/outbound-setup`](skills/outbound-setup/SKILL.md) | Une fois, au début. Configure tout à partir de ton contexte |
+| [`/outbound-batch`](skills/outbound-batch/SKILL.md) | À chaque nouveau lot. Six phases, cinq arrêts, dont trois qui engagent de l'argent |
+| [`/post-call-sync`](skills/post-call-sync/SKILL.md) | Après chaque session d'appels. Classe, vérifie contre l'agenda et les mails, pousse dans le CRM |
+
+## Les prompts, si tu préfères sans skill
+
+Tout est faisable à la main, un prompt par étape.
 
 | # | Étape | Fichier |
 |---|---|---|
@@ -25,33 +98,27 @@ pour t'en servir, mais il explique pourquoi chaque pièce existe.
 | 01 | Choisir sa verticale et son offre | [`01-choisir-sa-verticale.md`](prompts/01-choisir-sa-verticale.md) |
 | 02 | Qualifier son marché : à qui vend chaque entreprise | [`02-qualifier-son-marche.md`](prompts/02-qualifier-son-marche.md) |
 | 03 | Construire son dictionnaire de postes | [`03-dictionnaire-de-postes.md`](prompts/03-dictionnaire-de-postes.md) |
-| 04 | Trouver les contacts dans les entreprises retenues | [`04-trouver-les-contacts.md`](prompts/04-trouver-les-contacts.md) |
+| 04 | Trouver les contacts | [`04-trouver-les-contacts.md`](prompts/04-trouver-les-contacts.md) |
 | 05 | Enrichir les mobiles sans brûler de crédits | [`05-enrichir-les-mobiles.md`](prompts/05-enrichir-les-mobiles.md) |
 | 06 | Écrire son script de cold call | [`06-script-de-cold-call.md`](prompts/06-script-de-cold-call.md) |
 | 07 | Construire le CRM dans Notion | [`07-construire-le-crm-notion.md`](prompts/07-construire-le-crm-notion.md) |
 | 08 | Traiter une session d'appels | [`08-traiter-une-session-dappels.md`](prompts/08-traiter-une-session-dappels.md) |
 
-## Les skills Claude Code
-
-Deux skills à déposer dans `~/.claude/skills/`. Ce sont les versions publiques
-de celles qu'on utilise tous les jours.
-
-| Skill | Ce qu'elle fait |
-|---|---|
-| [`outbound-batch`](skills/outbound-batch/SKILL.md) | Fabrique un lot de prospection de bout en bout, d'une cible en langage naturel jusqu'à une liste de contacts avec mobiles. Six phases, cinq points d'arrêt où tu valides, dont trois qui engagent de l'argent |
-| [`post-call-sync`](skills/post-call-sync/SKILL.md) | Transforme une session d'appels en statuts propres et pousse les qualifiés dans le CRM |
-
-```bash
-git clone https://github.com/morterolvalentin-ctrl/outbound-blueprint.git
-cp -r outbound-blueprint/skills/* ~/.claude/skills/
-```
-
 ## Les références
 
 | Fichier | Contenu |
 |---|---|
-| [`references/dictionnaire-postes.json`](references/dictionnaire-postes.json) | Les intitulés de poste des décideurs commerciaux, en français et en anglais, avec les exclusions |
-| [`references/schema-sheet-outbound.md`](references/schema-sheet-outbound.md) | Les colonnes du fichier de prospection, et ce que chacune sert |
+| [`references/dictionnaire-postes.exemple.json`](references/dictionnaire-postes.exemple.json) | Un exemple de format, pas un contenu à réutiliser |
+| [`references/schema-sheet-outbound.md`](references/schema-sheet-outbound.md) | Les colonnes du fichier de prospection, et les trois règles d'écriture |
+
+## Désinstaller
+
+```bash
+rm -rf ~/.claude/skills/outbound-setup ~/.claude/skills/outbound-batch \
+       ~/.claude/skills/post-call-sync ~/.claude/outbound
+```
+
+Tes MCP restent branchés, ton Sheet et ton CRM restent à toi.
 
 ## Licence
 

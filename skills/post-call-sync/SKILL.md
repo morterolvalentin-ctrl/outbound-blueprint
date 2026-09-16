@@ -13,6 +13,13 @@ description: >
 
 # Traiter une session de cold calls
 
+Lis d'abord `~/.claude/outbound/config.json` pour retrouver le fichier de
+prospection et le CRM. S'il manque, dis de lancer `/outbound-setup`.
+
+Outils : **Google Sheets** pour le fichier, **Gmail** et **Google Calendar** pour
+la vérification des faits, **Notion** pour le CRM, **Allo** pour l'historique des
+appels si besoin.
+
 L'utilisateur surligne les lignes qu'il vient de traiter et écrit ce qui s'est
 passé dans la colonne `Notes`, en langage libre. Cette procédure transforme ces
 notes en statuts exploitables, vérifie les faits déclarés contre la boîte mail

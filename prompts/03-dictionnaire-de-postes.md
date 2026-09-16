@@ -11,8 +11,15 @@ t'intéresse pas, le directeur de la communication non plus. Le dictionnaire de
 postes est la liste des intitulés qui comptent, et surtout la liste de ceux qui
 ressemblent aux bons sans en être.
 
-Un point de départ prêt à l'emploi est dans
-[`../references/dictionnaire-postes.json`](../references/dictionnaire-postes.json).
+**Le plus simple est de laisser la skill le faire.** `/outbound-setup` construit
+ton dictionnaire à partir de ton activité, famille par famille, et te demande
+explicitement qui tu as déjà appelé pour rien. Ce prompt est là si tu préfères
+le faire à la main, ou le refaire pour une nouvelle verticale.
+
+[`../references/dictionnaire-postes.exemple.json`](../references/dictionnaire-postes.exemple.json)
+montre le **format** attendu. C'est un exemple écrit pour une entreprise qui
+vend à des directeurs commerciaux dans l'automobile : ne le recopie pas, il ne
+décrit pas tes acheteurs.
 
 ---
 
@@ -48,7 +55,16 @@ Contraintes de format :
 
 Ensuite, explique-moi en 5 lignes qui contacter en priorité selon la taille de
 l'entreprise : moins de 10 commerciaux, de 10 à 30, plus de 30.
+
+Avant de me rendre le JSON, pose-moi ces deux questions et attends mes
+réponses :
+- quels intitulés ressemblent aux bons sans en être, dans MON marché ?
+- qui ai-je déjà appelé pour rien ?
+Ce sont mes réponses qui remplissent "exclude", pas ton modèle générique.
 ```
+
+Enregistre le résultat dans `~/.claude/outbound/dictionnaire-postes.json` :
+c'est le fichier que lisent les skills.
 
 ---
 
