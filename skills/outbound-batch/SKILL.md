@@ -57,7 +57,7 @@ sache dans quoi il s'engage.
 | **Allo** ([withallo.com](https://withallo.com)) | les appels, phase 6 |
 | **Notion** | le CRM, alimenté ensuite par `post-call-sync` |
 
-Les commandes d'installation sont dans `mcp/README.md` du dépôt.
+Les commandes d'installation sont dans `~/.claude/outbound/mcp.md`.
 
 ## Les six phases
 

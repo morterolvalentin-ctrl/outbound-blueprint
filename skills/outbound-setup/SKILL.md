@@ -35,6 +35,21 @@ Elle se lance une fois. À la fin, l'utilisateur a un fichier de prospection, un
 CRM, un script, un dictionnaire de postes qui lui appartient, et deux skills
 opérationnelles qui lisent sa configuration.
 
+## Ce que tu as sous la main
+
+`install.sh` a déposé tout ça dans `~/.claude/outbound/` :
+
+| Fichier | À quoi il sert |
+|---|---|
+| `mcp.md` | Les commandes d'installation des 6 serveurs MCP, phase 4 |
+| `prompts/` | Les 9 prompts du blueprint, dont la spec complète du CRM en phase 6 |
+| `schema-sheet-outbound.md` | Les colonnes du fichier de prospection, phase 5 |
+| `dictionnaire-postes.exemple.json` | Un **exemple de format**, jamais un contenu à reprendre |
+
+**Lis ces fichiers au moment où tu en as besoin.** Ne reconstitue rien de
+mémoire. Si l'un manque, dis-le à l'utilisateur et propose de relancer
+l'installation, plutôt que d'improviser.
+
 <br>
 
 > **La règle qui gouverne toute cette skill.**
@@ -180,9 +195,12 @@ S'il te parle d'un outil de séquençage multicanal, dis-lui que ce n'est pas
 nécessaire ici et pourquoi : ça fait à peu près doubler le coût de la pipeline,
 et sur les premiers mois ce budget est mieux ailleurs.
 
-Les commandes exactes sont dans `mcp/README.md` du dépôt. Donne-les **une à la
-fois**, attends qu'il confirme que ça répond, passe à la suivante. Ne lui colle
-jamais cinq commandes d'un coup.
+Les commandes exactes sont dans `~/.claude/outbound/mcp.md`, installé avec la
+skill. **Lis ce fichier**, ne reconstitue pas les commandes de mémoire : une URL
+d'endpoint inventée fait perdre une demi-heure.
+
+Donne-les **une à la fois**, attends qu'il confirme que ça répond, passe à la
+suivante. Ne lui colle jamais six commandes d'un coup.
 
 <br>
 
@@ -219,7 +237,10 @@ d'enrichissement se trace, sinon on le repaie.
 Construis les quatre bases Notion reliées : 🏢 Entreprises, 👤 Contacts,
 💼 Deals, 🎤 Meetings, avec leurs propriétés, leurs formules, leurs rollups et
 leurs vues. La spécification complète est dans
-`prompts/07-construire-le-crm-notion.md` du dépôt : applique-la telle quelle.
+`~/.claude/outbound/prompts/07-construire-le-crm-notion.md`, installé avec la
+skill. **Lis ce fichier et applique-le tel quel.** N'improvise pas un schéma de
+CRM : les formules, les rollups et les vues y sont écrits parce qu'ils ont été
+testés. Si le fichier est absent, dis-le et arrête-toi plutôt que d'inventer.
 
 Deux adaptations à lui demander :
 

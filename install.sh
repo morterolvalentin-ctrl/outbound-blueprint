@@ -37,7 +37,10 @@ done
 
 cp "${TMP}/repo/references/dictionnaire-postes.exemple.json" "${CONF_DIR}/dictionnaire-postes.exemple.json"
 cp "${TMP}/repo/references/schema-sheet-outbound.md" "${CONF_DIR}/schema-sheet-outbound.md"
-ok "références copiées dans ~/.claude/outbound/"
+cp "${TMP}/repo/mcp/README.md" "${CONF_DIR}/mcp.md"
+rm -rf "${CONF_DIR}/prompts"
+cp -R "${TMP}/repo/prompts" "${CONF_DIR}/prompts"
+ok "références, guide MCP et 9 prompts copiés dans ~/.claude/outbound/"
 
 echo
 bold "C'est installé. Une seule chose à faire maintenant :"
