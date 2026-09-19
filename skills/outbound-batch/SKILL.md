@@ -18,12 +18,6 @@ triggers:
   - je veux prospecter
   - fais-moi un lot
   - nouveau lot outbound
-allowed-tools:
-  - Bash
-  - Read
-  - Write
-  - Edit
-  - AskUserQuestion
 ---
 
 # outbound-batch

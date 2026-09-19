@@ -16,13 +16,6 @@ triggers:
   - configure ma pipeline
   - installe ma machine de prospection
   - setup outbound
-allowed-tools:
-  - Bash
-  - Read
-  - Write
-  - Edit
-  - WebFetch
-  - AskUserQuestion
 ---
 
 # outbound-setup

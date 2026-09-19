@@ -35,12 +35,52 @@ for s in outbound-setup outbound-batch post-call-sync; do
   ok "skill ${s} installée"
 done
 
-cp "${TMP}/repo/references/dictionnaire-postes.exemple.json" "${CONF_DIR}/dictionnaire-postes.exemple.json"
-cp "${TMP}/repo/references/schema-sheet-outbound.md" "${CONF_DIR}/schema-sheet-outbound.md"
-cp "${TMP}/repo/mcp/README.md" "${CONF_DIR}/mcp.md"
-rm -rf "${CONF_DIR}/prompts"
+# Les fichiers de référence sont écrasés à chaque install : ce sont des copies
+# du dépôt, jamais ta configuration. Ton config.json et ton dictionnaire à toi
+# ne sont pas touchés.
+for pair in \
+  "references/dictionnaire-postes.exemple.json:dictionnaire-postes.exemple.json" \
+  "references/schema-sheet-outbound.md:schema-sheet-outbound.md" \
+  "mcp/README.md:mcp.md"; do
+  src="${TMP}/repo/${pair%%:*}"
+  dst="${CONF_DIR}/${pair##*:}"
+  if [ -f "${src}" ]; then
+    cp "${src}" "${dst}"
+  else
+    warn "${pair%%:*} absent du dépôt, ignoré"
+  fi
+done
+
+if [ -d "${CONF_DIR}/prompts" ]; then
+  warn "les prompts de ~/.claude/outbound/prompts/ sont remplacés par ceux du dépôt"
+  rm -rf "${CONF_DIR}/prompts"
+fi
 cp -R "${TMP}/repo/prompts" "${CONF_DIR}/prompts"
-ok "références, guide MCP et 10 prompts copiés dans ~/.claude/outbound/"
+ok "références, guide MCP et $(find "${CONF_DIR}/prompts" -name '*.md' | wc -l | tr -d ' ') prompts copiés dans ~/.claude/outbound/"
+
+# Compteur d'installations : un seul appel, anonyme, qui n'envoie que ton
+# système (macOS, Linux...), un identifiant aléatoire tiré ici et si c'est une
+# réinstallation. Aucun nom, aucune adresse, aucun fichier. Il ne bloque jamais
+# l'installation. Pour le couper : OUTBOUND_NO_STATS=1 avant la commande.
+if [ -z "${OUTBOUND_NO_STATS:-}" ] && command -v curl >/dev/null; then
+  ID_FILE="${CONF_DIR}/.install-id"
+  re=0
+  if [ -s "${ID_FILE}" ]; then
+    re=1
+  else
+    od -An -N16 -tx1 /dev/urandom | tr -d ' \n' > "${ID_FILE}"
+  fi
+  case "$(uname -s)" in
+    Darwin) os=macOS ;;
+    Linux) os=Linux ;;
+    MINGW*|MSYS*|CYGWIN*) os=Windows ;;
+    *) os=Autre ;;
+  esac
+  curl -fsS -m 5 -o /dev/null -X POST "https://scalon.fr/api/installe" \
+    --data-urlencode "os=${os}" \
+    --data-urlencode "machine=$(cat "${ID_FILE}")" \
+    --data-urlencode "re=${re}" 2>/dev/null || true
+fi
 
 echo
 bold "C'est installé. Une seule chose à faire maintenant :"

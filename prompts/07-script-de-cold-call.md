@@ -5,18 +5,23 @@ toutes les 50 conversations.
 
 ---
 
-## Le script qu'on utilise, mot pour mot
+## Le script qu'on utilise, dans sa forme réelle
+
+Ce qui suit est notre script d'appel, avec nos éléments à nous remplacés par
+des crochets. **Ne l'appelle pas tel quel** : les crochets sont des trous à
+remplir avec ta société, ton étude et ton client référence. Un script récité
+avec l'identité de quelqu'un d'autre s'effondre à la première question.
 
 ```
-Bonjour, je suis Valentin de Scalon.
+Bonjour, je suis [Ton prénom] de [Ta société].
 Vous êtes bien [Prénom] au [Poste] chez [Entreprise] ?
 
 Ah super, je m'adresse à la bonne personne.
 
-On qualifie des fichiers de prospection pour les entreprises qui prospectent
-les garages, mais pas que. On vient de terminer une étude où on a passé au
-crible les 60 957 établissements automobiles uniques de France. On travaille
-déjà avec des entreprises du secteur comme Vroomly.
+[Ce que tu fais, en une phrase sans jargon]. On vient de terminer une étude
+où on a passé au crible les [chiffre PRÉCIS, non arrondi] [objets étudiés]
+de France. On travaille déjà avec des entreprises du secteur comme
+[client référence que ton interlocuteur connaît].
 
 Je souhaiterais prendre 20 minutes avec vous pour vous montrer les résultats
 de l'étude et comprendre votre besoin sur la prospection.
@@ -25,6 +30,11 @@ Vous êtes disponible demain ou jeudi ?
 ```
 
 Il tient en 25 secondes. Chronomètre-le à voix haute.
+
+Le bloc 5 est le seul que tu ne peux pas inventer : il te faut un vrai client,
+nommable, et dont tu as l'accord pour être cité au téléphone. Si tu n'en as
+pas encore, supprime la phrase plutôt que de la meubler. Un script de cinq
+blocs vrais bat un script de six blocs dont un est faux.
 
 ---
 
