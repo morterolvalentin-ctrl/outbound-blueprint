@@ -34,11 +34,6 @@ C'est tout. La skill prend la main à partir de là.
 > temporaire, copie les trois skills dans `~/.claude/skills/` en sauvegardant ce
 > qui existait déjà, et crée `~/.claude/outbound/`. Il ne touche à rien d'autre
 > et n'installe aucune clé.
->
-> À la fin, il envoie un signal anonyme pour compter les installations : ton
-> système (macOS, Linux...), un identifiant aléatoire tiré sur ta machine, et
-> si c'est une réinstallation. Rien d'autre. Pour le couper, lance
-> `OUTBOUND_NO_STATS=1 bash` à la place de `bash` en fin de commande.
 
 ## Ce que fait `/outbound-setup`
 
