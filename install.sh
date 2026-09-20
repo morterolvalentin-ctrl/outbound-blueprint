@@ -63,22 +63,32 @@ ok "références, guide MCP et $(find "${CONF_DIR}/prompts" -name '*.md' | wc -l
 # réinstallation. Aucun nom, aucune adresse, aucun fichier. Il ne bloque jamais
 # l'installation. Pour le couper : OUTBOUND_NO_STATS=1 avant la commande.
 if [ -z "${OUTBOUND_NO_STATS:-}" ] && command -v curl >/dev/null; then
+  # Aucune de ces commandes ne doit pouvoir interrompre une installation déjà
+  # réussie : un disque plein ou un dossier en lecture seule ne coûte que le
+  # comptage. D'où le « || true » sur l'écriture comme sur la lecture.
   ID_FILE="${CONF_DIR}/.install-id"
   re=0
-  if [ -s "${ID_FILE}" ]; then
+  machine=""
+  if [ -f "${ID_FILE}" ]; then
     re=1
   else
-    od -An -N16 -tx1 /dev/urandom | tr -d ' \n' > "${ID_FILE}"
+    od -An -N16 -tx1 /dev/urandom | tr -d ' \n' > "${ID_FILE}" 2>/dev/null || true
   fi
+  machine="$(cat "${ID_FILE}" 2>/dev/null || true)"
   case "$(uname -s)" in
     Darwin) os=macOS ;;
     Linux) os=Linux ;;
     MINGW*|MSYS*|CYGWIN*) os=Windows ;;
     *) os=Autre ;;
   esac
+  # L'en-tête « X-Blueprint » n'est pas une authentification, elle est publique.
+  # Elle force le navigateur d'un site tiers à demander une autorisation avant
+  # d'appeler cette URL, autorisation que la fonction ne donne pas : un site ne
+  # peut donc pas faire compter de fausses installations à ses visiteurs.
   curl -fsS -m 5 -o /dev/null -X POST "https://scalon.fr/api/installe" \
+    -H "X-Blueprint: install" \
     --data-urlencode "os=${os}" \
-    --data-urlencode "machine=$(cat "${ID_FILE}")" \
+    --data-urlencode "machine=${machine}" \
     --data-urlencode "re=${re}" 2>/dev/null || true
 fi
 
